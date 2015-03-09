@@ -36,6 +36,12 @@ exports.getProcessors = function () {
             text += entryText.join('');
         }
 
+        var chineseOnly = this.chineseOnly;
+
+        if (chineseOnly) {
+            text = text.replace(/[^\u4e00-\u9fa5]/g, '')
+        }
+
         var srcPath = file.path;
         var outputDir = processContext.outputDir;
         var destPath = path.dirname(file.outputPath);
@@ -73,6 +79,7 @@ exports.getProcessors = function () {
         files: [ '*.ttf' ],
         entryFiles: [ '*.html' ],
         text: '他夏了夏天',
+        chineseOnly: true,
         name: 'FontCompressor',
         process: fontMinify
     }
@@ -88,7 +95,8 @@ exports.getProcessors = function () {
 
 exports.exclude = [
     'node_modules',
-    'README',
+    'screenshot',
+    'README.md',
     'package.json',
     'tool',
     'doc',

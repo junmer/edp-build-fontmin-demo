@@ -24,6 +24,7 @@ var fontProcessor = {
     files: [ '*.ttf' ],                     // 字体文件
     entryFiles: [ '*.html' ],               // 引用字体的网页，用来扫描所需字型
     text: '他夏了夏天',                      // 人肉配置所需字型
+    chineseOnly: true,						// 只取中文字型，忽略 数字、英文、标点
     name: 'FontCompressor',
     process: function() { ... }
 };
@@ -45,7 +46,7 @@ $ edp ws start
 
 ![after](./screenshot/after.png)
 
-字体文件 `5.1 MB` -> `32.2 KB`, 效果 萌萌哒  (￣y▽￣)~*
+字体文件 `5.1 MB` -> `29.1 KB`, 效果 萌萌哒  (￣y▽￣)~*
 
 ## Thanks
 
