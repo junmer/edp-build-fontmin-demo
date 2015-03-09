@@ -50,4 +50,4 @@ $ edp ws start
 
 ## Thanks
 
-- [新蒂下午茶体 白金版](http://font.sentywed.com/download.htm) 非商业免费，商业应用请联系 [新蒂字体](http://font.sentywed.com/)
+- [新蒂下午茶体 白金版](http://font.sentywed.com/download.htm) 非商业免费授权，商业授权请联系 [新蒂字体](http://font.sentywed.com/)
