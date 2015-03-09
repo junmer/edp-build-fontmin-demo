@@ -1,6 +1,6 @@
-# edp-build with fontmin demo
+# edp-build with fontmin
 
-> 为了让 [edp](https://github.com/ecomfe/edp) 体系的小伙伴们更快上手 [fontmin](https://github.com/junmer/fontmin) , 玩转 中文字体，创建这个 demo
+> 为了让 [edp](https://github.com/ecomfe/edp) 体系的小伙伴们更快上手 [fontmin](https://github.com/junmer/fontmin) , 玩转 中文字体，创建了这个 demo 给大家参考
 
 ## PreInstall
 
@@ -37,6 +37,15 @@ $ edp ws start
 
 打开 `http://127.0.01:8848/` 和 `http://127.0.01:8848/output/` 对比效果
 
+构建前:
+
+![before](./screenshot/before.png)
+
+构建后:
+
+![after](./screenshot/after.png)
+
+字体文件 `5.1 MB` -> `32.4 KB`, 效果 萌萌哒  (￣y▽￣)~*
 
 ## Thanks
 
