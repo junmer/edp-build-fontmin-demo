@@ -3,7 +3,7 @@ exports.input = __dirname;
 var path = require( 'path' );
 exports.output = path.resolve( __dirname, 'output' );
 
-var Fontmin = require('fontmin');
+var FontProcessor = require('edp-build-fontmin');
 
 // var moduleEntries = 'html,htm,phtml,tpl,vm,js';
 // var pageEntries = 'html,htm,phtml,tpl,vm';
@@ -15,74 +15,12 @@ exports.getProcessors = function () {
     var jsProcessor = new JsCompressor();
     var pathMapperProcessor = new PathMapper();
     var addCopyright = new AddCopyright();
-
-    function fontMinify(file, processContext, done) {
-
-        var text = this.text || '';
-
-        var entryFiles = this.entryFiles;
-
-        if (entryFiles) {
-
-            var entryText = [];
-
-            processContext
-                .getFilesByPatterns(entryFiles)
-                .forEach(function (entryFile) {
-                    entryText.push(entryFile.data);
-                }
-            );
-
-            text += entryText.join('');
-        }
-
-        var chineseOnly = this.chineseOnly;
-
-        if (chineseOnly) {
-            text = text.replace(/[^\u4e00-\u9fa5]/g, '')
-        }
-
-        var srcPath = file.path;
-        var outputDir = processContext.outputDir;
-        var destPath = path.dirname(file.outputPath);
-        destPath = path.resolve(outputDir, destPath); // 获取目标地址，传入 fontmin.dest
-        file.outputPath = null; // 清除 edp 构建结果
-
-        var fontmin = new Fontmin()
-            .src(srcPath)
-            .use(Fontmin.glyph({
-                text: text
-            }))
-            .use(Fontmin.ttf2eot({
-                clone: true
-            }))
-            .use(Fontmin.ttf2woff({
-                clone: true
-            }))
-            .use(Fontmin.ttf2svg({
-                clone: true
-            }))
-            .dest(destPath);
-
-        var me = this;
-
-        fontmin.run(function(err, files, stream) {
-            if (err) {
-                me.log.error(err);
-            }
-
-            done();
-        });
-    }
-
-    var fontProcessor = {
-        files: [ '*.ttf' ],
-        entryFiles: [ '*.html' ],
-        text: '他夏了夏天',
-        chineseOnly: true,
-        name: 'FontCompressor',
-        process: fontMinify
-    }
+    var fontProcessor = new FontProcessor({
+        files: [ '*.ttf' ],                     // 字体文件
+        entryFiles: [ '*.html' ],               // 引用字体的网页，用来扫描所需字型
+        text: '他夏了夏天',                      // 人肉配置所需字型
+        chineseOnly: true,                      // 只取中文字型，忽略 数字、英文、标点
+    });
 
     return {
         'default': [ lessProcessor, moduleProcessor, pathMapperProcessor, fontProcessor ],

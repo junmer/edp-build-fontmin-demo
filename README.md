@@ -13,21 +13,20 @@ $ npm install -g edp
 ```
 $ git clone https://github.com/junmer/edp-build-fontmin-demo
 $ cd edp-build-fontmin-demo
-$ npm install fontmin
+$ npm install edp-build-fontmin
 $ edp build -f
 ```
 
 ## Config
 
 ```
-var fontProcessor = {
+var FontProcessor = require('edp-build-fontmin');
+var fontProcessor = new FontProcessor({
     files: [ '*.ttf' ],                     // 字体文件
     entryFiles: [ '*.html' ],               // 引用字体的网页，用来扫描所需字型
     text: '他夏了夏天',                      // 人肉配置所需字型
-    chineseOnly: true,						// 只取中文字型，忽略 数字、英文、标点
-    name: 'FontCompressor',
-    process: function() { ... }
-};
+    chineseOnly: true,                      // 只取中文字型，忽略 数字、英文、标点
+});
 ```
 
 ## Showcase
@@ -48,6 +47,13 @@ $ edp ws start
 
 字体文件 `5.1 MB` -> `29.1 KB`, 效果 萌萌哒  (￣y▽￣)~*
 
+## Related
+
+- [edp](https://github.com/ecomfe/edp)
+- [fontmin](https://github.com/junmer/fontmin)
+- [edp-build-fontmin](https://github.com/junmer/edp-build-fontmin)
+- [fonteditor](https://github.com/ecomfe/fonteditor)
+
 ## Thanks
 
-- [新蒂下午茶体 白金版](http://font.sentywed.com/download.htm) 非商业免费，商业应用请联系 [新蒂字体](http://font.sentywed.com/)
+- [新蒂下午茶体 白金版](http://font.sentywed.com/download.htm) 非商业免费授权，商业授权请联系 [新蒂字体](http://font.sentywed.com/)
